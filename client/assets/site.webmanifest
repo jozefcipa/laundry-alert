@@ -1,9 +1,9 @@
 {
-    "name": "Notification",
-    "short_name": "Notification",
+    "name": "LaundryAlert",
+    "short_name": "LaundryAlert",
     "icons": [
         {
-            "src": "/icon.png",
+            "src": "/assets/icon.png",
             "sizes": "48x48",
             "type": "image/png"
         }
