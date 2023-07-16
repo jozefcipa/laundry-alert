@@ -1,4 +1,6 @@
-const URL = 'http://192.168.0.103'; // todo 192.168.0.1/check ? it will just return something
+// TODO: add a specific URL endpoint that will return something in order to avoid false positives in case
+// 192.168.0.100 is used on a different network
+const URL = 'http://192.168.0.100' 
 
 (async () => {
   // cancel the request after 1s to avoid endless waiting

@@ -1,0 +1,14 @@
+{
+    "name": "Notification",
+    "short_name": "Notification",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
