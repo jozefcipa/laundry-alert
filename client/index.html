@@ -9,21 +9,29 @@
 </head>
 <body>
   <div id="message">
-    <h1>Washing Machine Control</h1>
-    <h2 id="description">Washing...</h2>
+    <h1>Laundry Alert</h1>
+    <h2 id="status">Loading...</h2>
   </div>
   <div>
-    <div id="washing-progress">
-      <img src="./assets/washing.jpg" alt="">
+    <div id="loading">
+      <img src="./assets/loading.jpg" alt="">
     </div>
-    <div id="washing-done">
-     <img src="./assets/laundry.jpg" alt="">
+    <div id="error">
+     <img src="./assets/disconnected.jpg" alt="">
     </div>
-  </div>
-  <div>
-    <button id="register-notifications">
-      Notify me when it's done
-    </button>
+    <div id="laundry">
+      <div>
+        <div id="washing-progress">
+          <img src="./assets/washing.jpg" alt="">
+        </div>
+        <!-- <div id="washing-done">
+         <img src="./assets/laundry.jpg" alt="">
+        </div> -->
+      </div>
+      <button id="register-notifications">
+        Notify me when it's done
+      </button>
+    </div>
   </div>
 </body>
 <script src="./main.js"></script>

@@ -23,12 +23,8 @@ h2 {
   font-size: 1em;
 }
 
-#washing-done {
-  display: none
-}
-
-#washing-progress {
-  animation: horizontal-shaking 0.2s infinite;
+#error {
+  display: none;
 }
 
 img {
@@ -36,6 +32,16 @@ img {
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
+}
+
+#laundry {
+  display: none; /* not showed by default */
+  flex-direction: column;
+  align-items: center;
+}
+
+#washing-progress {
+  animation: horizontal-shaking 0.2s infinite;
 }
 
 #register-notifications {
