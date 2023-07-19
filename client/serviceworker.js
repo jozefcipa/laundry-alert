@@ -8,4 +8,7 @@ self.addEventListener("push", async event => {
   self.registration.showNotification(title, {
     body,
   })
+
+  // if done
+  // add class .done to body, show washing-done
 })
