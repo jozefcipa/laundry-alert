@@ -40,6 +40,10 @@ img {
   align-items: center;
 }
 
+#washing-done {
+  display: none;
+}
+
 #washing-progress {
   animation: horizontal-shaking 0.2s infinite;
 }

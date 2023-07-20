@@ -11,3 +11,7 @@ webPush.setVapidDetails(
 async function sendNotification(payload, subscription) {
   await webPush.sendNotification(subscription, JSON.stringify(payload))
 }
+
+module.exports = {
+  sendNotification,
+}

@@ -1,14 +1,13 @@
-self.addEventListener("push", async event => {
-  const { title, body } = await event.data.json()
-
-  console.log('incoming', { title, body })
-
-  // TODO: can we somehow handle clicking on the notification?
-
+self.addEventListener('push', async event => {
+  const { title, body, type } = await event.data.json()
   self.registration.showNotification(title, {
     body,
   })
 
-  // if done
-  // add class .done to body, show washing-done
+  if (type === 'laundry-done') {
+    const channel = new BroadcastChannel('service-worker')
+    channel.postMessage({
+      type: 'laundry-done'
+    })
+  }
 })

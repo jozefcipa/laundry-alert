@@ -1,22 +1,26 @@
-// import sqlite from 'sqlite3'
+const sqlite = require('sqlite3')
+const path = require('path')
 
+const sqlite3 = sqlite.verbose()
+const db = new sqlite3.Database(path.resolve(__dirname, '../../.db', 'data.db'))
 
-// const sqlite3 = sqlite.verbose();
-// const db = new sqlite3.Database('app.db');
+function saveSubscription(subscription) {
+  db.run('INSERT INTO notification_tokens (subscription) VALUES (?) ON CONFLICT (subscription) DO NOTHING', subscription)
+}
 
-// docs: https://github.com/TryGhost/node-sqlite3/wiki/API
-// db.serialize(() => {
-//     db.run("CREATE TABLE lorem (info TEXT)");
+async function listAllSubscriptions() {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM notification_tokens', [], (err, rows) => {
+      if (err) {
+        return reject(err)
+      }
+      return resolve(rows)
+    })
+  })
+}
 
-//     const stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-//     for (let i = 0; i < 10; i++) {
-//         stmt.run("Ipsum " + i);
-//     }
-//     stmt.finalize();
-
-//     db.each("SELECT rowid AS id, info FROM lorem", (err, row) => {
-//         console.log(row.id + ": " + row.info);
-//     });
-// });
-
-// db.close();
+module.exports = {
+  db,
+  saveSubscription,
+  listAllSubscriptions
+}

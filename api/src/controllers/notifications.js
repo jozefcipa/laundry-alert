@@ -1,15 +1,14 @@
+const { saveSubscription } = require('../services/db')
+
 async function subscribe(req, res) {
+  // todo: some basic validation
 
+  console.log('Creating subscription', req.body)
 
-  console.log('incoming data', req.body)
-  // todo store this data as subscription in DB
+  // save notification token in database
+  saveSubscription(JSON.stringify(req.body))
 
-
-  // maybe send out one notification as a confirmation
-  // await sendNotification({title: "Hello World", body: 'eheeeeee'}, req.body)
-
-
-  res.json({ ok: 1 })
+  res.status(201).send()
 }
 
 module.exports = {

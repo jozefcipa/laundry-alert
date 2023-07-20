@@ -3,6 +3,14 @@
 const API_URL = 'http://localhost:1234'
 const VAPID_PUBLIC_KEY = 'BLwKBVim7SJHtsVqxpiXKhyp38br6vBCGBeX6FKYPuBLSlpfpthU_JEzCFjh6DewQXMut1mzCBR5h7isxZQEebA'
 
+const loadingScreen = document.getElementById('loading')
+const errorScreen = document.getElementById('error')
+const laundryScreen = document.getElementById('laundry')
+const statusLabel = document.getElementById('status')
+const subscribeBtn = document.getElementById('subscribe-notifications')
+const washingProgress = document.getElementById('washing-progress')
+const washingDone = document.getElementById('washing-done')
+
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4)
   const base64 = (base64String + padding)
@@ -29,7 +37,7 @@ async function findDeviceOnNetwork() {
       return false
     }
 
-    return true
+    return response
   } catch (err) {
     console.error('Error ocurred while finding device', err)
     return false
@@ -60,19 +68,24 @@ async function handleSubscribe(serviceWorker) {
   })
 }
 
-;(async () => {
-  const loadingScreen = document.getElementById('loading')
-  const errorScreen = document.getElementById('error')
-  const laundryScreen = document.getElementById('laundry')
-  const status = document.getElementById('status')
-  const subscribeBtn = document.getElementById('subscribe-notifications')
+function showWashingDoneScreen() {
+  washingProgress.style.display = 'none'
+  washingDone.style.display = 'flex'
+  statusLabel.innerHTML = 'Washing done. Go get it!'
+  document.body.classList.add('done')
+}
 
-  const found = await findDeviceOnNetwork()
-  if (!found) {
+;(async () => {
+
+  const deviceInfo = await findDeviceOnNetwork()
+
+  // hide loading screen
+  loadingScreen.style.display = 'none'
+
+  if (!deviceInfo) {
     // show error message
-    loadingScreen.style.display = 'none'
     errorScreen.style.display = 'block'
-    status.innerHTML = `
+    statusLabel.innerHTML = `
     Device not found on the network 🫣<br><br>
     <small>
       Maybe you're on connected to a different network?<br>
@@ -82,10 +95,15 @@ async function handleSubscribe(serviceWorker) {
     return
   }
 
-  // show laundry screen
-  loadingScreen.style.display = 'none'
   laundryScreen.style.display = 'flex'
-  status.innerHTML = 'Washing...'
+
+  if (!deviceInfo.isWashing) {
+    showWashingDoneScreen()
+    return
+  }
+
+  // show laundry screen
+  statusLabel.innerHTML = 'Washing...'
 
   // A service worker must be registered in order to send notifications on iOS
   const serviceWorker = await navigator.serviceWorker.register('./serviceworker.js', { scope: './' })
@@ -96,7 +114,14 @@ async function handleSubscribe(serviceWorker) {
       await handleSubscribe(serviceWorker)
       subscribeBtn.innerHTML = 'Subscribed!'
     } catch(err) {
-      status.innerHTML = 'Error ocurred' // improve error handling
+      statusLabel.innerHTML = 'Error ocurred' + JSON.stringify(err) // improve error handling
+    }
+  })
+
+  const channel = new BroadcastChannel('service-worker')
+  channel.addEventListener('message', event => {
+    if (event.data.type === 'laundry-done') {
+      showWashingDoneScreen()
     }
   })
 })()

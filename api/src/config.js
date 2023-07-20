@@ -1,7 +1,8 @@
 const dotenv = require('dotenv')
+const path = require('path')
 
 // load env config
-dotenv.config()
+dotenv.config({ path: path.resolve(__dirname, '.env') })
 
 function requireEnv(name) {
   const value = process.env[name]
@@ -21,4 +22,7 @@ module.exports = {
   api: {
     port: process.env.PORT ?? 1234,
   },
+  gpio: {
+    ledPin: 24
+  }
 }
