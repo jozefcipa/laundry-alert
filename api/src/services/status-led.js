@@ -6,9 +6,31 @@ class StatusLed {
   turnedOn = false
 
   async toggle() {
-    this.turnedOn = !this.turnedOn
-    console.log(`led toggle ${this.turnedOn ? 'OFF' : 'ON'}`)
-    await gpio.writePin(this.PIN, this.turnedOn ? 1 : 0)
+    if (this.turnedOn) {
+      this.turnOff()
+    } else {
+      this.turnOn()
+    }
+  }
+
+  async turnOn() {
+    // avoid expensive GPIO call if we already have the LED in the desired state
+    if (this.turnedOn) {
+      return
+    }
+    console.log(`Changing LED to ON`)
+    await gpio.writePin(this.PIN, 1)
+    this.turnedOn = true
+  }
+
+  async turnOff() {
+    // avoid expensive GPIO call if we already have the LED in the desired state
+    if (!this.turnedOn) {
+      return
+    }
+    console.log(`Changing LED to OFF`)
+    await gpio.writePin(this.PIN, 0)
+    this.turnedOn = false
   }
 }
 

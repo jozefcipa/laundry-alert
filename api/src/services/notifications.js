@@ -9,6 +9,7 @@ webPush.setVapidDetails(
 )
 
 async function sendNotification(payload, subscription) {
+  console.log(`Sending notification [payload=${JSON.stringify(payload)}]`)
   await webPush.sendNotification(subscription, JSON.stringify(payload))
 }
 

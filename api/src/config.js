@@ -23,6 +23,6 @@ module.exports = {
     port: process.env.PORT ?? 1234,
   },
   gpio: {
-    ledPin: 24
+    ledPin: 16
   }
 }

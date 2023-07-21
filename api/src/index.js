@@ -1,40 +1,27 @@
-const express = require('express')
-const cors = require('cors')
-const config = require('./config')
-const notificationsController = require('./controllers/notifications')
-const { db } = require('./services/db')
-const led = require('./services/status-led')
-
-const app = express()
-app.use(cors())
-app.use(express.json())
-
-// Define routes
-app.get('/', async (req, res) => {
-  res.json({
-    name: 'laundry-alert-api',
-    isWashing: true // TODO: is washing?
-    // TODO: maybe we can add here some GPIO status check
-  })
-})
-app.post('/notifications/subscribe', notificationsController.subscribe)
-
-
-// TODO: turn this off when the washing is done
-const interval = setInterval(() => {
-  led.toggle()
-}, 1000)
+const db = require('./services/db')
+const api = require('./api')
+const intervals = require('./intervals')
+const gpio = require('./services/gpio')
 
 function onClose() {
   console.log('Stopping server...')
-
-  db.close()
-  clearInterval(interval)
-
-  process.exit(0)
+  api.stop()
+  intervals.stop()
+  db.stop()
 }
-
 process.on('SIGINT', onClose)
 process.on('SIGTERM', onClose)
 
-app.listen(config.api.port, () => console.log(`listening on localhost:${config.api.port}`))
+;(async () => {
+  // verify GPIO is available
+  await gpio.check()
+
+  // start DB
+  db.start()
+
+  // start intervals
+  intervals.start()
+
+  // start API
+  api.start()
+})()

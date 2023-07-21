@@ -114,7 +114,7 @@ function showWashingDoneScreen() {
       await handleSubscribe(serviceWorker)
       subscribeBtn.innerHTML = 'Subscribed!'
     } catch(err) {
-      statusLabel.innerHTML = 'Error ocurred' + JSON.stringify(err) // improve error handling
+      statusLabel.innerHTML = `Error ocurred: "${err.message}"` // TODO: improve error handling
     }
   })
 
