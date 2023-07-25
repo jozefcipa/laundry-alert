@@ -1,14 +1,15 @@
 const ledInterval = require('./led')
 const photoResistorInterval = require('./photoresistor')
+const logger = require('../services/logger')
 
 let blinkLed
 let checkPhotoresistor
 
 function start() {
   blinkLed = setInterval(ledInterval.handler, ledInterval.period)
-  console.log('LED interval started...')
+  logger.info('LED interval started...')
   checkPhotoresistor = setInterval(photoResistorInterval.handler, photoResistorInterval.period)
-  console.log('Photoresistor interval started...')
+  logger.info('Photoresistor interval started...')
 }
 
 function stop() {

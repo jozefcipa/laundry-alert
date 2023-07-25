@@ -21,8 +21,10 @@ module.exports = {
   },
   api: {
     port: process.env.PORT ?? 1234,
+    logLevel: process.env.LOG_LEVEL ?? 'info',
   },
   gpio: {
-    ledPin: 16
+    ledPin: 16,
+    photoResistorPin: 0, // TODO: specify
   }
 }

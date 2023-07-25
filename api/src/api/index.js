@@ -3,7 +3,7 @@ const cors = require('cors')
 const config = require('../config')
 const notificationsController = require('./controllers/notifications')
 const statusController = require('./controllers/status')
-const { db } = require('../services/db')
+const logger = require('../services/logger')
 
 const app = express()
 app.use(cors())
@@ -15,7 +15,7 @@ app.post('/notifications/subscribe', notificationsController.subscribe)
 
 let server
 function start() {
-  server = app.listen(config.api.port, () => console.log(`API is listening on 127.0.0.1:${config.api.port}\n`))
+  server = app.listen(config.api.port, () => logger.info(`API is listening on 127.0.0.1:${config.api.port}\n`))
 }
 
 function stop() {

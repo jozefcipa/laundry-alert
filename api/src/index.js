@@ -2,9 +2,10 @@ const db = require('./services/db')
 const api = require('./api')
 const intervals = require('./intervals')
 const gpio = require('./services/gpio')
+const logger = require('./services/logger')
 
 function onClose() {
-  console.log('Stopping server...')
+  logger.info('Stopping server...')
   api.stop()
   intervals.stop()
   db.stop()

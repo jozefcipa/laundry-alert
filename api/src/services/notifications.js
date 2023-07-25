@@ -1,5 +1,6 @@
 const webPush = require('web-push')
 const config = require('../config')
+const logger = require('./logger')
 
 // initialize VAPID
 webPush.setVapidDetails(
@@ -9,7 +10,7 @@ webPush.setVapidDetails(
 )
 
 async function sendNotification(payload, subscription) {
-  console.log(`Sending notification [payload=${JSON.stringify(payload)}]`)
+  logger.debug(`Sending notification [payload=${JSON.stringify(payload)}]`)
   await webPush.sendNotification(subscription, JSON.stringify(payload))
 }
 

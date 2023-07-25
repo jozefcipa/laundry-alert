@@ -1,3 +1,5 @@
+const logger = require('./services/logger')
+
 class State {
   state = {
     // since we have only one photoresistor to detect when the washing is done
@@ -11,6 +13,7 @@ class State {
   }
 
   setIsWashing(isWashing) {
+    logger.info(`Washing status changed to WASHING=${isWashing}`)
     this.state.isWashing = isWashing
   }
 }

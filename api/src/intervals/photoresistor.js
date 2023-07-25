@@ -1,18 +1,22 @@
 const state = require('../state')
 const db = require('../services/db')
+const logger = require('../services/logger')
 const notifications = require('../services/notifications')
-
-let i = 0
+const photoResistor = require('../services/photoresistor')
 
 async function handler() {
-  console.log('checking photoresitor')
+  // if photo resistor sends 1, it means the "washing done" LED is turned on
+  const isWashingDone = await photoResistor.read()
 
-  // TODO: check GPIO
-  // TODO simulate finished washing
+  // if the state hasn't changed, do nothing
+  if (state.isWashing === !isWashingDone) {
+    return
+  }
 
-  if (i > 2 && state.isWashing) {
-    state.setIsWashing(false)
+  // update state
+  state.setIsWashing(!isWashingDone)
 
+  if (isWashingDone) {
     const subscribers = await db.listAllSubscriptions()
     await Promise.all(subscribers.map(async subscriber => {
       await notifications.sendNotification({
@@ -22,10 +26,6 @@ async function handler() {
       }, subscriber)
     }))
   }
-
-  // TODO: add a way to update the state after the washing has finished and then it would start again
-
-  i++
 }
 
 module.exports = {

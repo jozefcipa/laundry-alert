@@ -1,13 +1,14 @@
 const sqlite3 = require('sqlite3')
 const path = require('path')
 const assert = require('assert')
+const logger = require('./logger')
 
 let db = null
 
 function start() {
   const database = sqlite3.verbose()
   db = new database.Database(path.resolve(__dirname, '../../.db', 'data.db'))
-  console.log('DB initialized...')
+  logger.info('DB initialized...')
 }
 
 function stop() {

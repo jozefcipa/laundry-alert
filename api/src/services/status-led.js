@@ -1,5 +1,6 @@
 const gpio = require('./gpio')
 const config = require('../config')
+const logger = require('./logger')
 
 class StatusLed {
   PIN = config.gpio.ledPin
@@ -18,7 +19,7 @@ class StatusLed {
     if (this.turnedOn) {
       return
     }
-    console.log(`Changing LED to ON`)
+    logger.debug(`Changing LED to ON`)
     await gpio.writePin(this.PIN, 1)
     this.turnedOn = true
   }
@@ -28,7 +29,7 @@ class StatusLed {
     if (!this.turnedOn) {
       return
     }
-    console.log(`Changing LED to OFF`)
+    logger.debug(`Changing LED to OFF`)
     await gpio.writePin(this.PIN, 0)
     this.turnedOn = false
   }
