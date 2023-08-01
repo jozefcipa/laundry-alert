@@ -1,4 +1,4 @@
-const API_URL = 'http://192.168.0.100'
+const API_URL = 'https://192.168.0.234'
 // const API_URL = 'http://localhost:1234'
 const VAPID_PUBLIC_KEY = 'BLwKBVim7SJHtsVqxpiXKhyp38br6vBCGBeX6FKYPuBLSlpfpthU_JEzCFjh6DewQXMut1mzCBR5h7isxZQEebA'
 
