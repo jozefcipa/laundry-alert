@@ -1,4 +1,16 @@
+# OS generated files
+.DS_Store
+
+# Node.js
 node_modules
+
+# Environment
 .env
+
+# Database
 .db/
 !.db/.gitkeep
+
+# SSL certificates
+ssl/cert.key
+ssl/cert.pem
