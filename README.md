@@ -39,6 +39,7 @@ It's using [OrangePi Zero](http://www.orangepi.org/html/hardWare/computerAndMicr
 
   - GPIO
   - photoresistor
+  - https://electropeak.com/learn/interfacing-photoresistor-ldr-sensor-with-arduino/
   - status LED
   
   - [WiringOP](https://github.com/orangepi-xunlong/wiringOP) GPIO library
@@ -52,7 +53,9 @@ It's using [OrangePi Zero](http://www.orangepi.org/html/hardWare/computerAndMicr
 ![GPIO Pinout](./assets//gpio.png)
 
 ### Electrical circuit
+
 - Pin A, B - map to OrangePi GPIO pins
 
+- [Photoresistor circuit](https://electropeak.com/learn/interfacing-photoresistor-ldr-sensor-with-arduino/)
 
 ![Diagram](./assets//diagram.png)

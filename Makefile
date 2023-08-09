@@ -1,4 +1,4 @@
-api/install: ./api/package.json ./api/node_modules
+api/install: ./api/package.json ./api/node_modules # TODO: Doesn't work
 	cd ./api && npm install
 
 api:
@@ -12,7 +12,7 @@ client:
 	npx serve ./client
 
 deploy:
-	rsync -r --exclude node_modules --exclude data.db ./ root@192.168.0.234:/home/orangepi/laundry-alert
+	rsync -r --exclude node_modules --exclude data.db ./ root@192.168.0.100:/home/orangepi/laundry-alert
 
 ssl/generate:
 	echo "not implemented" # TODO

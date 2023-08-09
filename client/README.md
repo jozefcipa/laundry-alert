@@ -8,3 +8,7 @@ Instead, this website will be loaded on `laundry.iot.jozefcipa.com` and if it fi
     - what is frontend doing
     - deployed on Vercel
     - ios web app
+
+
+- why is it online 
+- what is web app

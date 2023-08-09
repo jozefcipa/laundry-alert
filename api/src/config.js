@@ -25,6 +25,6 @@ module.exports = {
   },
   gpio: {
     ledPin: 16,
-    photoResistorPin: 0, // TODO: specify
+    photoResistorPin: 6,
   }
 }

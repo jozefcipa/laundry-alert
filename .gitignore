@@ -10,7 +10,3 @@ node_modules
 # Database
 .db/
 !.db/.gitkeep
-
-# SSL certificates
-ssl/cert.key
-ssl/cert.pem
