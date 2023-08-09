@@ -9,6 +9,7 @@ function start() {
   const database = sqlite3.verbose()
   db = new database.Database(path.resolve(__dirname, '../../.db', 'data.db'))
   logger.info('DB initialized...')
+  return db
 }
 
 function stop() {
@@ -35,6 +36,7 @@ async function listAllSubscriptions() {
 }
 
 module.exports = {
+  db,
   start,
   stop,
   saveSubscription,

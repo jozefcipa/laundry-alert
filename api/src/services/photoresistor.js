@@ -6,8 +6,9 @@ class PhotoResistor {
   PIN = config.gpio.photoResistorPin
 
   async read() {
-    logger.debug('Reading photoresistor')
-    return await gpio.readPin(this.PIN)
+    const value = await gpio.readPin(this.PIN)
+    logger.debug({ value }, 'Reading photoresistor')
+    return value
   }
 }
 

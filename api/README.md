@@ -12,7 +12,10 @@
 # setup
 copy .env.example to .env and fill in the values
 
+run sqlite "migration"
+
 how to generate VAPID keys
+
 
 ### SSL
 - Nginx & HTTPS

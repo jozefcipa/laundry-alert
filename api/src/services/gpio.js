@@ -45,7 +45,7 @@ async function writePin(pin, value) {
 async function readPin(pin) {
   try {
     const value = await command(`gpio read ${pin}`)
-    return value === '1'
+    return value == 1
   } catch(err) {
     logger.error('Failed to read pin value', { err, pin })
   }

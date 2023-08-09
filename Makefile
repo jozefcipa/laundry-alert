@@ -1,7 +1,7 @@
 api/install: ./api/package.json ./api/node_modules # TODO: Doesn't work
 	cd ./api && npm install
 
-api:
+api:  # TODO: doesn't work
 	# TODO: pm2
 	LOG_LEVEL=info node ./api/src/index.js
 
@@ -12,7 +12,10 @@ client:
 	npx serve ./client
 
 deploy:
-	rsync -r --exclude node_modules --exclude data.db ./ root@192.168.0.100:/home/orangepi/laundry-alert
+	rsync -r --exclude node_modules --exclude data.db --exclude .env ./ root@192.168.0.100:/home/orangepi/laundry-alert
 
 ssl/generate:
-	echo "not implemented" # TODO
+	# TODO: finish command, to save files with specific name into ./ssl
+	mkcert 192.168.0.100
+
+	# then restart nginx

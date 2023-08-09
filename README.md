@@ -59,3 +59,5 @@ It's using [OrangePi Zero](http://www.orangepi.org/html/hardWare/computerAndMicr
 - [Photoresistor circuit](https://electropeak.com/learn/interfacing-photoresistor-ldr-sensor-with-arduino/)
 
 ![Diagram](./assets//diagram.png)
+
+ssh credentials is `root / orangepi`

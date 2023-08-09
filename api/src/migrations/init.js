@@ -1,4 +1,6 @@
-const { db } = require('../services/db')
+const { start } = require('../services/db')
+
+const db = start()
 
 db.serialize(() => {
   db.run(`
