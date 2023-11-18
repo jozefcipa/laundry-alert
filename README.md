@@ -17,10 +17,11 @@
 - briefly describe how it works and link to the other READMEs
 
 ```mermaid
-  flowchart LR
+  flowchart TB
       client([iOS Web App\nlaundry.iot.jozefcipa.com])-- API -->orangePi([OrangePi]);
-      orangePi-- GPIO ---Photoresistor;
-      orangePi-- GPIO -->led(((LED)));
+      ADConverter([A/D converter\nArduino])--GPIO-->orangePi;
+      Photoresistor-->ADConverter;
+      orangePi--GPIO-->led(((LED)));
       orangePi-. Web Push Notifications .->client;
       Photoresistor-. detects light .-washingMachine((Washing Machine)) ;
 ```
@@ -54,10 +55,6 @@ It's using [OrangePi Zero](http://www.orangepi.org/html/hardWare/computerAndMicr
 
 ### Electrical circuit
 
-- Pin A, B - map to OrangePi GPIO pins
-
-- [Photoresistor circuit](https://electropeak.com/learn/interfacing-photoresistor-ldr-sensor-with-arduino/)
-
-![Diagram](./assets//diagram.png)
+- TBD
 
 ssh credentials is `root / orangepi`
