@@ -15,10 +15,3 @@ copy .env.example to .env and fill in the values
 run sqlite "migration"
 
 how to generate VAPID keys
-
-
-### SSL
-- Nginx & HTTPS
-  - custom Certificate Authority
-    - `mkcert`
-    - installed root certificate on iOS device to allow HTTPS
