@@ -5,7 +5,7 @@ const notifications = require('../services/notifications')
 const photoResistor = require('../services/photoresistor')
 
 async function handler() {
-  // if photo resistor sends 1, it means the "washing done" LED is turned on
+  // if the photo resistor sends 1, it means the "washing done" LED is turned on
   const isWashingDone = await photoResistor.read()
 
   // if the state hasn't changed, do nothing

@@ -5,6 +5,7 @@ const gpio = require('./services/gpio')
 const logger = require('./services/logger')
 const led = require('./services/status-led')
 const photoResistor = require('./services/photoresistor')
+const notifications = require('./services/notifications')
 
 function onClose() {
   logger.info('Stopping server...')
@@ -32,4 +33,19 @@ process.on('SIGTERM', onClose)
 
   // start API
   api.start()
+
+  // Notify all phones that the program has started
+  try {
+    const subscribers = await db.listAllSubscriptions()
+    await Promise.all(subscribers.map(async subscriber => {
+      await notifications.sendNotification({
+        title: 'LaundryAlert is on 👀',
+        body: 'Yay, the app is up and running. You will be notified when the washing ends.',
+        type: 'init'
+      }, subscriber)
+    }))
+  } catch (err) {
+    console.error('Failed to send init notifications')
+    console.error(err)
+  }
 })()
