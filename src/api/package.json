@@ -1,6 +1,12 @@
 {
   "name": "api",
   "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Jozef Cipa",
+    "email": "hello@jozefcipa.com",
+    "url": "https://jozefcipa.com"
+  },
   "scripts": {
     "dev": "node src/index.js | npx pino-pretty"
   },

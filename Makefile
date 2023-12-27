@@ -1,6 +1,5 @@
 deps:
 	cd ./src/api && npm install
-	cd ./src/web && npm install
 
 deps/prod:
 	cd ./src/api && npm install --omit=dev
