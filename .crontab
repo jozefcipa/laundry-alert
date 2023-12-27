@@ -1,0 +1,1 @@
+@reboot cd /home/orangepi/laundry-alert && make api/prod
