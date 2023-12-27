@@ -44,14 +44,11 @@ See the [docs](./src/api/README.md).
 See the [docs](./src/ad-converter/README.md).
 
 
-## How to run
-- TBD - write general information to set up the project locally
-
-- set up web - TBD link to web docs
-- set up api - TBD link to API docs
-- deploy code to Seeduino (via Arduino IDE)
-
-
+## Running locally
+- Install dependencies - `make deps`
+- Start the web - `make web`
+- Start the API - `make api/dev` (**Note**: the API must be [configured first](./src/api/README.md))
+- Deploy the code to Seeduino (via Arduino IDE)
 
 ### Makefile - TBD
 - list of commands
@@ -70,32 +67,38 @@ _Password_: `orangepi`
 
 #### Installation - TBD
 - Install Node.js
-- Install NPM dependencies (TBD - makefile command)
+- Install NPM dependencies (`make deps/prod`)
 - Install [WiringOP](https://github.com/orangepi-xunlong/wiringOP) GPIO library
-- Install Nginx - TBD makefile command
-- Generate SSL certificates - TBD makefile command
+- Install Nginx
+- Generate SSL certificates - **TBD makefile command**
   - don't forget to register the certificate in iOS (**TBD article**)
-- Generate VAPID keys - TBD makefile command
-- Copy code from the computer - TBD makefile command
-- Register the program to start on startup - TBD makefile command
+- Generate VAPID keys (See [API configuration](./src/api/README.md))
+- Copy code from the computer - `make deploy`
+- Register the program to start on startup - `make crontab/install`
 
 #### GPIO
 GPIO stands for General Purpose Input Output bus and it's used to communicate with other devices.<br>
-This project uses two pins - one for controlling led (16) and one for reading information from the A/D converter (6).
+This project uses two pins - one for controlling the LED (16) and one for reading information from the A/D converter (6).
 
 <img src="./assets/gpio.png" width="640" alt="GPIO Pinout">
 
-**Note**: Use the `wPi` column to refer to the correct pin number!
-
+**Note**: Use the `wPi` column (`$ gpio readall`) to refer to the correct pin number!
 
 We can test whether the library is installed and working properly by trying to turn the LED on and off.
 
 ```bash
 $ gpio readall       # show the GPIO configuration map
-$ gpio mode 16 out   # this sets the GPIO PIN 16 (LED) as OUTPUT
+$ gpio mode 16 out   # set the GPIO pin 16 (LED) as OUTPUT
 $ gpio write 16 1    # turn on the LED
 $ gpio write 16 0    # turn off the LED
 ```
+
+There is also a Makefile command `make gpio/test` that does the same.
+
+### Running on the microcomputer
+- `(local-computer)$ make deploy` - Deploy the code
+- connect to OrangePi
+- `(orange-pi)$ make api/prod` - Start the program manually
 
 ### HTTPS and iOS - TBD
 describe root certificate and how it needs to be added to iphone to support local HTTPS connection

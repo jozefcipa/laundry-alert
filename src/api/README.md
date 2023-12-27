@@ -1,17 +1,17 @@
 # API
 
-- API
-  - nodejs app
-  - SQLite (for storing device tokens)
-  - gpio C library
-  - express API
-  - controlling GPIO
-  - sending push notifications
-    - vapid
+This is a Node.js app that controls the whole project.
+It provides an API for **registering notification tokens**, communicates with the **GPIO** when reading the sensor values, and sends **push notifications** when the washing cycle ends.
 
-# setup
-copy .env.example to .env and fill in the values
+### Technologies
+- Node.js & Express router
+- SQLite database (for storing device tokens)
+- Custom wrapper aroudn [WiringOP](https://github.com/orangepi-xunlong/wiringOP) GPIO library
+- Push notifications using [VAPID](https://www.npmjs.com/package/web-push)
 
-run sqlite "migration"
-
-how to generate VAPID keys
+### How to run
+- Install npm dependencies - `npm install`
+- Generate VAPID keys (e.g. here [vapidkeys.com](https://vapidkeys.com/) or programmatically using the `web-push` library)
+- Copy `.env.example` to `.env` and configure values
+- Run SQLite migrations - `make api/init-db`
+- Start the API - `make api/dev` (**Note**: no `nodemon` right now, the process needs to be restarted after every change)

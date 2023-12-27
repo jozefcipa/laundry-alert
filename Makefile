@@ -1,20 +1,35 @@
-api/install: ./api/package.json ./api/node_modules # TODO: Doesn't work
-	cd ./api && npm install
+deps:
+	cd ./src/api && npm install
+	cd ./src/web && npm install
 
-api:  # TODO: doesn't work
+deps/prod:
+	cd ./src/api && npm install --omit=dev
+
+api/prod:
 	# TODO: pm2
-	LOG_LEVEL=info node ./api/src/index.js
+	LOG_LEVEL=info node ./src/api/src/index.js
 
 api/dev:
-	node ./api/src/index.js | ./api/node_modules/.bin/pino-pretty
+	node ./src/api/src/index.js | node ./src/api/node_modules/.bin/pino-pretty
 
-client:
-	npx serve ./client
+api/init-db:
+	node ./src/api/src/migrations/init.js | node ./src/api/node_modules/.bin/pino-pretty
+
+web:
+	npx serve ./src/web
 
 deploy:
-	rsync -r --exclude node_modules --exclude data.db --exclude .env ./ root@192.168.0.100:/home/orangepi/laundry-alert
+	rsync -r --exclude-from .rsyncignore ./src/api ./Makefile ./README.md ./nginx .crontab root@192.168.0.100:/home/orangepi/laundry-alert
+
+crontab/install:
+	crontab < /home/orangepi/laundry-alert/.crontab
+
+gpio/test:
+	# TODO: implement
+	echo "Test"
 
 ssl/generate:
+	# TODO: move SSL dir to ./nginx/ssl
 	# TODO: finish command, to save files with specific name into ./ssl
 	mkcert 192.168.0.100
 
