@@ -45,3 +45,5 @@ ssl/generate:
 	mkcert 192.168.0.100
 
 	# then restart nginx
+
+.PHONY: web

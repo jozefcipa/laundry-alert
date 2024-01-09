@@ -35,17 +35,12 @@ process.on('SIGTERM', onClose)
   api.start()
 
   // Notify all phones that the program has started
-  try {
-    const subscribers = await db.listAllSubscriptions()
-    await Promise.all(subscribers.map(async subscriber => {
-      await notifications.sendNotification({
-        title: 'LaundryAlert is on 👀',
-        body: 'Yay, the app is up and running. You will be notified when the washing ends.',
-        type: 'init'
-      }, subscriber)
-    }))
-  } catch (err) {
-    console.error('Failed to send init notifications')
-    console.error(err)
-  }
+  const subscribers = await db.listAllSubscriptions()
+  await Promise.all(subscribers.map(async subscriber => {
+    await notifications.sendNotification({
+      title: 'LaundryAlert is on 👀',
+      body: 'Yay, the app is up and running. You will be notified when the washing ends.',
+      type: 'init'
+    }, subscriber)
+  }))
 })()
