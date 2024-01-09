@@ -4,10 +4,10 @@ const path = require('path')
 // load env config
 dotenv.config({ path: path.resolve(__dirname, '.env') })
 
-function requireEnv(name) {
+function requireEnv(name, defaultVal) {
   const value = process.env[name]
-  if (value) {
-    return value
+  if (value || defaultVal) {
+    return value ?? defaultVal
   }
 
   throw new Error(`Environment variable "${name}" missing.`)
@@ -24,7 +24,7 @@ module.exports = {
     logLevel: process.env.LOG_LEVEL ?? 'info',
   },
   gpio: {
-    ledPin: 16,
-    photoResistorPin: 6,
+    ledPin: requireEnv('LED_PIN', 16),
+    photoResistorPin: requireEnv('PHOTORESISTOR_PIN', 15),
   }
 }
