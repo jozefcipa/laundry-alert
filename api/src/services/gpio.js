@@ -1,5 +1,6 @@
 const { exec } = require('child_process')
 const logger = require('./logger')
+const config = require('../config')
 
 async function command(cmd) {
   return new Promise((resolve, reject) => {
@@ -16,13 +17,19 @@ async function command(cmd) {
   })
 }
 
+function handleError(err) {
+  if (config.env === 'PRODUCTION') {
+    throw err
+  }
+}
+
 async function check() {
   try {
     await command(`gpio readall`)
     return true
   } catch(err) {
-    logger.error('[ERR]:GPIO not available!')
-    return false
+    logger.error(err, 'GPIO not available')
+    handleError(err)
   }
 }
 
@@ -30,7 +37,8 @@ async function setPinMode(pin, mode) {
   try {
     return await command(`gpio mode ${pin} ${mode}`)
   } catch(err) {
-    logger.error('Failed to set pin mode', { err, pin, mode })
+    logger.error({ err, pin, mode }, 'Failed to set pin mode')
+    handleError(err)
   }
 }
     
@@ -38,7 +46,8 @@ async function writePin(pin, value) {
   try {
     return await command(`gpio write ${pin} ${value}`)
   } catch(err) {
-    logger.error('Failed to write pin value', { err, pin, value })
+    logger.error({ err, pin, value }, 'Failed to write pin value')
+    handleError(err)
   }
 }
 
@@ -47,7 +56,8 @@ async function readPin(pin) {
     const value = await command(`gpio read ${pin}`)
     return value == 1
   } catch(err) {
-    logger.error('Failed to read pin value', { err, pin })
+    logger.error({ err, pin }, 'Failed to read pin value')
+    handleError(err)
   }
 }
 

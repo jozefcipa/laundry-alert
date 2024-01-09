@@ -74,7 +74,9 @@ _Password_: `orangepi`
   - don't forget to register the certificate in iOS (**TBD article**)
 - Generate VAPID keys (See [API configuration](./src/api/README.md))
 - Copy code from the computer - `make deploy`
-- Register the program to start on startup - `make crontab/install`
+- Start the API - `make api/prod`
+- Register the API to start after booting - `make api/register-launcher`
+  - Run the command provided in the output
 
 #### GPIO
 GPIO stands for General Purpose Input Output bus and it's used to communicate with other devices.<br>

@@ -14,6 +14,7 @@ function requireEnv(name, defaultVal) {
 }
 
 module.exports = {
+  env: process.env.NODE_ENV,
   vapid: {
     publicKey: requireEnv('VAPID_PUBLIC_KEY'),
     privateKey: requireEnv('VAPID_PRIVATE_KEY'),
