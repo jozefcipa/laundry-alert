@@ -1,6 +1,0 @@
-./api
-./Makefile
-./nginx
-./README.md
-./ecosystem.config.js
-./pm2-logrotate-config.sh

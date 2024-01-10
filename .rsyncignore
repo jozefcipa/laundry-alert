@@ -1,7 +1,11 @@
 node_modules
+web
+ad-converter
+assets
 data.db
 .env
 .git
 .gitignore
 .DS_Store
 .idea
+LICENSE

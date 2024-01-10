@@ -29,8 +29,10 @@ web:
 deploy:
 	rsync -r \
 		--exclude-from .rsyncignore \
-		--include-from .rsyncinclude \
-		root@:$(ORANGE_PI_IP_ADDR)/home/orangepi/laundry-alert
+		--progress \
+		--rsh=ssh \
+		. \
+		laundry-alert:~/laundry-alert
 
 gpio/test:
 	@gpio readall && \
@@ -38,6 +40,9 @@ gpio/test:
 	gpio write $(LED_PIN) 1 && \
 	sleep 1 && \
 	gpio write $(LED_PIN) 0
+
+nginx/setup:
+	# TODO: copy server.conf & restart service
 
 ssl/generate:
 	# TODO: move SSL dir to ./nginx/ssl
