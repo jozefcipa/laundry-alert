@@ -1,12 +1,15 @@
 const ledService = require('../services/status-led')
 const state = require('../state')
+const { sleep } = require('../helpers/sleep')
 
-function handler() {
+async function handler() {
   // When the washing is in progress the LED is blinking, when it finishes, the LED stays turned ON
   if (!state.isWashing) {
-    ledService.turnOn()
+    await ledService.turnOn()
   } else {
-    ledService.toggle()
+    await ledService.turnOn()
+    await sleep(200)
+    await ledService.turnOff()
   }
 }
 
