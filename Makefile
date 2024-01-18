@@ -40,7 +40,7 @@ deploy: ssl/copy-root-ca
 		--progress \
 		--rsh=ssh \
 		. \
-		laundry-alert:~/laundry-alert2
+		laundry-alert:~/laundry-alert
 
 # Copy the Root CA to the ./nginx/ssl folder so it gets copied over to OrangePi ... mkcert needs this to generate SSL certs
 ssl/copy-root-ca:
