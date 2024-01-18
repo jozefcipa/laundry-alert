@@ -50,8 +50,19 @@ See the [docs](./src/ad-converter/README.md).
 - Start the API - `make api/dev` (**Note**: the API must be [configured first](./src/api/README.md))
 - Deploy the code to Seeduino (via Arduino IDE)
 
-### Makefile - TBD
-- list of commands
+### Makefile
+- `deps` - Download production + develeopment NPM dependencies
+- `deps/prod` - Download production NPM dependencies
+- `api/prod` - Start the API with `NODE_ENV=production`
+- `api/register-launcher` - Register pm2 startup launcher so the API will start automaticall after reboot
+- `api/dev` - Run API locally
+- `api/init-db` - Initialize SQLite database
+- `web` - Serve web client application locally
+- `deploy` - Copy the files from the local computer to OrangePi
+- `ssl/copy-root-ca` - Copy the Root CA to the ./nginx/ssl folder so it gets copied over to OrangePi ... mkcert needs this to generate SSL certs
+- `ssl/generate` - Generate SSL certificates for NGINX on OrangePi
+- `nginx/setup` - Configure NGINX server (needs to be ran with `sudo`)
+- `gpio/test` - Test whether GPIO works by blinking the LED
 
 
 ## Configuration
@@ -109,6 +120,8 @@ There is also a Makefile command `make gpio/test` that does the same.
 - connect to OrangePi
 - `(orange-pi)$ make api/prod` - Start the program manually
 
-### HTTPS and iOS - TBD
-describe root certificate and how it needs to be added to iphone to support local HTTPS connection
-as the device is running locally
+### HTTPS and iOS
+
+As the app is using self-managed SSL certificate for the API, we need to register it in our iOS (Android) device in order to allow connections. <br>
+In order to do so, we need to add the SSL root authority certificate into our phone. <br>
+Read more [here](https://jozefcipa.com/blog/self-signed-ssl-certificates-on-ios) to see how to configure it.
