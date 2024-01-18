@@ -15,3 +15,10 @@ It provides an API for **registering notification tokens**, communicates with th
 - Copy `.env.example` to `.env` and configure values
 - Run SQLite migrations - `make api/init-db`
 - Start the API - `make api/dev` (**Note**: no `nodemon` right now, the process needs to be restarted after every change)
+
+
+### Endpoints
+
+`GET /` - Returns API status, if the service is running
+
+`POST /notifications/subscribe` - Subscribe to push notifications

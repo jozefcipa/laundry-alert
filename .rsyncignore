@@ -9,3 +9,5 @@ data.db
 .DS_Store
 .idea
 LICENSE
+nginx/ssl/cert.key
+nginx/ssl/cert.pem

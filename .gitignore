@@ -11,5 +11,6 @@ node_modules
 .db/
 !.db/.gitkeep
 
-ssl/cert.key
-ssl/cert.pem
+# SSL certificates
+nginx/ssl/*.key
+nginx/ssl/*.pem

@@ -3,7 +3,7 @@
 > _A small IoT project that monitors your washing machine and sends a push notification when the washing cycle ends_
 <br>
 
-<img src="https://github.com/jozefcipa/laundry-alert/assets/11503453/95facdcc-d20d-4c3e-80e9-3d66c5305c41" width="640" alt="photo">
+![Laundry Alert](./assets/laundry-alert.jpeg)
 
 ## How it works
 
@@ -59,24 +59,31 @@ See the [docs](./src/ad-converter/README.md).
 ### OrangePi Configuration
 
 #### Connecting to the unit
-You can connect to OrangePi via SSH using the following credentials:
+You can connect to OrangePi via SSH (password `orangepi`)
 
-_User_: `root` <br>
-_Password_: `orangepi`
+```bash
+$ ssh orangepi@192.168.0.100
+```
 
+#### Installation
 
-#### Installation - TBD
+##### Prerequisites
+> Make sure to have `mkcert` installed locally and generate the root CA authority first!
+>
+> https://github.com/FiloSottile/mkcert
+
 - Install Node.js
 - Install NPM dependencies (`make deps/prod`)
 - Install [WiringOP](https://github.com/orangepi-xunlong/wiringOP) GPIO library
-- Install Nginx
-- Generate SSL certificates - **TBD makefile command**
-  - don't forget to register the certificate in iOS (**TBD article**)
 - Generate VAPID keys (See [API configuration](./src/api/README.md))
 - Copy code from the computer - `make deploy`
 - Start the API - `make api/prod`
 - Register the API to start after booting - `make api/register-launcher`
   - Run the command provided in the output
+- Install Nginx
+- Generate SSL certificates - `make ssl/generate`
+- Configure Nginx - `make nginx/setup`
+- Open 192.168.0.100 in your browser. If everything went well you should see a response from the API.
 
 #### GPIO
 GPIO stands for General Purpose Input Output bus and it's used to communicate with other devices.<br>
