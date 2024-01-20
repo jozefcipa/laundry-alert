@@ -15,5 +15,5 @@ async function handler() {
 
 module.exports = {
   handler,
-  period: 1000, // 1s
+  period: 2000, // 2s
 }
