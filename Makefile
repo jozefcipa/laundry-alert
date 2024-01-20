@@ -48,7 +48,15 @@ ssl/copy-root-ca:
 
 # Generate SSL certificates for NGINX on OrangePi
 ssl/generate:
-	CAROOT=/home/orangepi/laundry-alert/nginx/ssl ./bin/mkcert -key-file ./nginx/ssl/cert.key -cert-file ./nginx/ssl/cert.pem 192.168.0.100
+	CAROOT=/home/orangepi/laundry-alert/nginx/ssl ./bin/mkcert \
+	-key-file ./nginx/ssl/cert.key -cert-file ./nginx/ssl/cert.pem 192.168.0.100 && \
+	node ./bin/certificate-manager.js write
+
+# Saves the next SSL certificate renewal date and generates the certificate if needed
+ssl/certificate-manager:
+	@if [ "$(shell node ./bin/certificate-manager.js check)" = "1" ]; then\
+		$(MAKE) ssl/generate;\
+	fi
 
 # Configure NGINX server
 # Needs to be ran as: "sudo make nginx/setup"

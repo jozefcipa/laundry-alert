@@ -1,0 +1,5 @@
+# Use the following command to load the crontab
+# cat .crontab | crontab -
+
+# Check SSL certificates validity
+@reboot cd /home/orangepi/laundry-alert && make ssl/certificate-manager

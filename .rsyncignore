@@ -11,3 +11,4 @@ data.db
 LICENSE
 nginx/ssl/cert.key
 nginx/ssl/cert.pem
+ssl-state.json

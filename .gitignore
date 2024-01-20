@@ -14,3 +14,4 @@ node_modules
 # SSL certificates
 nginx/ssl/*.key
 nginx/ssl/*.pem
+ssl-state.json

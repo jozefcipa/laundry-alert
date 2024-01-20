@@ -1,6 +1,6 @@
-# NGINX Proxy
+# Nginx Proxy
 
-We use NGINX as a simple proxy server to handle SSL termination and forward requests to the Node.js API running on `http://localhost:1234`.
+We use Nginx as a simple proxy server to handle SSL termination and forward requests to the Node.js API running on `http://localhost:1234`.
 
 ## Generating SSL certificates
 We use [mkcert](https://github.com/FiloSottile/mkcert) utility to generate the SSL certificates.
@@ -14,9 +14,8 @@ We use [mkcert](https://github.com/FiloSottile/mkcert) utility to generate the S
 💡This step is automatically made when deploying!
 
 **On OrangePi**
-
-- `make ssl/generate` - Generate SSL certificates and stores them into `./nginx/ssl/`
-- `make nginx/setup` - This creates a symlink of `./nginx/ssl/server.conf` to `/etc/nginx/sites-enabled/server.conf` and restarts the NGINX.
+- `make ssl/certificate-manager` - Generates SSL certificates and stores them in `./nginx/ssl/`
+- `make nginx/setup` - This creates a symlink of `./nginx/ssl/server.conf` to `/etc/nginx/sites-enabled/server.conf` and restarts Nginx
 
 ## Self-signed certificates on a phone
 

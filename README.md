@@ -59,11 +59,9 @@ See the [docs](./src/ad-converter/README.md).
 - `api/init-db` - Initialize SQLite database
 - `web` - Serve web client application locally
 - `deploy` - Copy the files from the local computer to OrangePi
-- `ssl/copy-root-ca` - Copy the Root CA to the ./nginx/ssl folder so it gets copied over to OrangePi ... mkcert needs this to generate SSL certs
-- `ssl/generate` - Generate SSL certificates for NGINX on OrangePi
+- `ssl/certificate-manager` - Saves the next SSL certificate renewal date and generates the certificate if needed
 - `nginx/setup` - Configure NGINX server (needs to be ran with `sudo`)
 - `gpio/test` - Test whether GPIO works by blinking the LED
-
 
 ## Configuration
 
@@ -92,9 +90,10 @@ $ ssh orangepi@192.168.0.100
 - Register the API to start after booting - `make api/register-launcher`
   - Run the command provided in the output
 - Install Nginx
-- Generate SSL certificates - `make ssl/generate`
+- Generate SSL certificates - `make ssl/certificate-manager`
+- Run `cat .crontab | crontab -` to make sure `ssl/certificate-manager` is ran automatically after reboot
 - Configure Nginx - `make nginx/setup`
-- Open 192.168.0.100 in your browser. If everything went well you should see a response from the API.
+- Open `192.168.0.100` in your browser. If everything went well you should see a response from the API.
 
 #### GPIO
 GPIO stands for General Purpose Input Output bus and it's used to communicate with other devices.<br>
