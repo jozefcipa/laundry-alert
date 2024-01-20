@@ -74,25 +74,26 @@ You can connect to OrangePi via SSH (password `orangepi`)
 $ ssh orangepi@192.168.0.100
 ```
 
+#### Prerequisites
+
+Make sure to have `mkcert` [downloaded](https://github.com/FiloSottile/mkcert) locally on your computer and generate the root CA authority first! (`mkcert -install`)
+
 #### Installation
 
-##### Prerequisites
-> Make sure to have `mkcert` installed locally and generate the root CA authority first!
->
-> https://github.com/FiloSottile/mkcert
-
 - Install Node.js
-- Install NPM dependencies (`make deps/prod`)
+- Install Nginx
 - Install [WiringOP](https://github.com/orangepi-xunlong/wiringOP) GPIO library
 - Generate VAPID keys (See [API configuration](./src/api/README.md))
 - Copy code from the computer - `make deploy`
+- Install NPM dependencies (`sudo make deps/prod`, use `sudo` in order to install `pm2` globally). It might take a while, just be patient 😅
+- Copy `.env.example` to `.env` in `./api/src` and configure the values
+- Initialize the database - `make api/init-db`
 - Start the API - `make api/prod`
 - Register the API to start after booting - `make api/register-launcher`
-  - Run the command provided in the output
-- Install Nginx
+  - **Run** the command provided in the output
 - Generate SSL certificates - `make ssl/certificate-manager`
 - Run `cat .crontab | crontab -` to make sure `ssl/certificate-manager` is ran automatically after reboot
-- Configure Nginx - `make nginx/setup`
+- Configure Nginx - `sudo make nginx/setup`
 - Open `192.168.0.100` in your browser. If everything went well you should see a response from the API.
 
 #### GPIO

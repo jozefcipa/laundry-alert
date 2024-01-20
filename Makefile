@@ -27,7 +27,7 @@ api/dev:
 
 # Initialize SQLite database
 api/init-db:
-	node ./api/src/migrations/init.js | node ./api/node_modules/.bin/pino-pretty
+	node ./api/src/migrations/init.js
 
 # Serve web client application locally
 web:
