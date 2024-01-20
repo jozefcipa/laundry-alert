@@ -49,7 +49,7 @@ ssl/copy-root-ca:
 # Generate SSL certificates for NGINX on OrangePi
 ssl/generate:
 	CAROOT=/home/orangepi/laundry-alert/nginx/ssl ./bin/mkcert \
-	-key-file ./nginx/ssl/cert.key -cert-file ./nginx/ssl/cert.pem 192.168.0.100 && \
+	-key-file ./nginx/ssl/cert.key -cert-file ./nginx/ssl/cert.pem $(ORANGE_PI_IP_ADDR) && \
 	node ./bin/certificate-manager.js write
 
 # Saves the next SSL certificate renewal date and generates the certificate if needed
