@@ -10,8 +10,10 @@ Once the washing is done, the Control unit sends a push notification and the pho
 The app is deployed to [laundry.iot.jozefcipa.com](https://laundry.iot.jozefcipa.com/) and is hosted on [Vercel](https://vercel.com/).
 
 ## UI
-<img src="../assets/app-loading.png" width="240">
-<img src="../assets/app-error.png" width="240">
-<img src="../assets/app-washing.png" width="240">
-<img src="../assets/app-washing-done.png" width="240">
-<img src="../assets/app-notification.png" width="240">
+<p float="left">
+  <img src="../assets/app-loading.png" width="30%">&nbsp;&nbsp;
+  <img src="../assets/app-error.png" width="30%">&nbsp;&nbsp;
+  <img src="../assets/app-washing.png" width="30%">&nbsp;&nbsp;
+  <img src="../assets/app-washing-done.png" width="30%">&nbsp;&nbsp;
+  <img src="../assets/app-notification.png" width="30%">
+</p>
