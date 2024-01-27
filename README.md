@@ -7,19 +7,11 @@
 
 ## How it works
 
-```mermaid
-  flowchart TB
-      client([iOS Web App\nlaundry.iot.jozefcipa.com])-- API -->orangePi([OrangePi]);
-      ADConverter([A/D converter\nArduino])--GPIO-->orangePi;
-      Photoresistor-->ADConverter;
-      orangePi--GPIO-->led(((LED)));
-      orangePi-. Web Push Notifications .->client;
-      Photoresistor-. detects light .-washingMachine((Washing Machine)) ;
-```
+![Diagram](./assets/diagram.png)
 
 The application consists of three parts
 
-**PWA application**
+**iOS Web App**
 
 A simple web application that is used to subscribe for notifications. It is installed on a phone as a web app.
 
@@ -27,7 +19,7 @@ Deployed at [laundry.iot.jozefcipa.com](https://laundry.iot.jozefcipa.com/).
 
 See the [docs](./src/web/README.md).
 
-**Control Unit**
+**OrangePi**
 
 This is where the main logic resides. It is an [OrangePi Zero](http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-Zero.html
 ) single-board computer running the Node.js app that communicates with the A/D converter, controls the status LED and sends push notifications to the web app.
@@ -36,7 +28,7 @@ Deployed at local network IP (e.g. `192.168.0.100:80`) behind the NGINX proxy.
 
 See the [docs](./src/api/README.md).
 
-**A/D converter**
+**Seeduino (A/D converter)**
 
 [Seeeduino XIAO SAMD21](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html) is used here to perform a simple analog to digital conversion when reading the values from the photoresistor. This data is then processed by the Control unit.
 
@@ -125,3 +117,10 @@ There is also a Makefile command `make gpio/test` that does the same.
 As the app is using self-managed SSL certificate for the API, we need to register it in our iOS (Android) device in order to allow connections. <br>
 In order to do so, we need to add the SSL root authority certificate into our phone. <br>
 Read more [here](https://jozefcipa.com/blog/self-signed-ssl-certificates-on-ios) to see how to configure it.
+
+
+### Some photos
+
+![In Progress](./assets/in-progres.jpeg)
+![Case](./assets/case.jpeg)
+![Debugging](./assets/debugging.jpeg)

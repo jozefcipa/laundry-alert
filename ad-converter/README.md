@@ -13,3 +13,6 @@ The board receives an analog input from the photoresistor and based on the given
 [Source](https://electropeak.com/learn/interfacing-photoresistor-ldr-sensor-with-arduino/)
 
 ![GPIO Pinout](../assets/circuit.jpeg)
+
+
+![Seeduino](../assets/seeduino.jpeg)
