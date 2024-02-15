@@ -17,7 +17,7 @@ A simple web application that is used to subscribe for notifications. It is inst
 
 Deployed at [laundry.iot.jozefcipa.com](https://laundry.iot.jozefcipa.com/).
 
-See the [docs](./src/web/README.md).
+See the [docs](./web/README.md).
 
 **OrangePi**
 
@@ -26,33 +26,33 @@ This is where the main logic resides. It is an [OrangePi Zero](http://www.orange
 
 Deployed at local network IP (e.g. `192.168.0.100:80`) behind the NGINX proxy.
 
-See the [docs](./src/api/README.md).
+See the [docs](./api/README.md).
 
 **Seeduino (A/D converter)**
 
 [Seeeduino XIAO SAMD21](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html) is used here to perform a simple analog to digital conversion when reading the values from the photoresistor. This data is then processed by the Control unit.
 
 
-See the [docs](./src/ad-converter/README.md).
+See the [docs](./ad-converter/README.md).
 
 
 ## Running locally
 - Install dependencies - `make deps`
 - Start the web - `make web`
-- Start the API - `make api/dev` (**Note**: the API must be [configured first](./src/api/README.md))
+- Start the API - `make api/dev` (**Note**: the API must be [configured first](./api/README.md))
 - Deploy the code to Seeduino (via Arduino IDE)
 
 ### Makefile
-- `deps` - Download production + develeopment NPM dependencies
+- `deps` - Download production + development NPM dependencies
 - `deps/prod` - Download production NPM dependencies
 - `api/prod` - Start the API with `NODE_ENV=production`
-- `api/register-launcher` - Register pm2 startup launcher so the API will start automaticall after reboot
+- `api/register-launcher` - Register pm2 startup launcher so the API will start automatically after reboot
 - `api/dev` - Run API locally
 - `api/init-db` - Initialize SQLite database
 - `web` - Serve web client application locally
 - `deploy` - Copy the files from the local computer to OrangePi
 - `ssl/certificate-manager` - Saves the next SSL certificate renewal date and generates the certificate if needed
-- `nginx/setup` - Configure NGINX server (needs to be ran with `sudo`)
+- `nginx/setup` - Configure NGINX server (needs to be run with `sudo`)
 - `gpio/test` - Test whether GPIO works by blinking the LED
 
 ## Configuration
@@ -75,7 +75,7 @@ Make sure to have `mkcert` [downloaded](https://github.com/FiloSottile/mkcert) l
 - Install Node.js
 - Install Nginx
 - Install [WiringOP](https://github.com/orangepi-xunlong/wiringOP) GPIO library
-- Generate VAPID keys (See [API configuration](./src/api/README.md))
+- Generate VAPID keys (See [API configuration](./api/README.md))
 - Copy code from the computer - `make deploy`
 - Install NPM dependencies (`sudo make deps/prod`, use `sudo` in order to install `pm2` globally). It might take a while, just be patient 😅
 - Copy `.env.example` to `.env` in `./api/src` and configure the values
@@ -84,7 +84,7 @@ Make sure to have `mkcert` [downloaded](https://github.com/FiloSottile/mkcert) l
 - Register the API to start after booting - `make api/register-launcher`
   - **Run** the command provided in the output
 - Generate SSL certificates - `make ssl/certificate-manager`
-- Run `cat .crontab | crontab -` to make sure `ssl/certificate-manager` is ran automatically after reboot
+- Run `cat .crontab | crontab -` to make sure `ssl/certificate-manager` is run automatically after reboot
 - Configure Nginx - `sudo make nginx/setup`
 - Open `192.168.0.100` in your browser. If everything went well you should see a response from the API.
 
@@ -114,8 +114,8 @@ There is also a Makefile command `make gpio/test` that does the same.
 
 ### HTTPS and iOS
 
-As the app is using self-managed SSL certificate for the API, we need to register it in our iOS (Android) device in order to allow connections. <br>
-In order to do so, we need to add the SSL root authority certificate into our phone. <br>
+As the app is using a self-managed SSL certificate for the API, we need to register it in our iOS (Android) device to allow connections. <br>
+In order to do so, we need to add the SSL root authority certificate to our phone. <br>
 Read more [here](https://jozefcipa.com/blog/self-signed-ssl-certificates-on-ios) to see how to configure it.
 
 
