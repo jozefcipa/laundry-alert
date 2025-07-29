@@ -1,4 +1,4 @@
-const express = require('express')
+gconst express = require('express')
 const cors = require('cors')
 const config = require('../config')
 const notificationsController = require('./controllers/notifications')
@@ -12,6 +12,7 @@ app.use(express.json())
 // Define routes
 app.get('/', statusController.status)
 app.post('/notifications/subscribe', notificationsController.subscribe)
+app.post('/system/shutdown', statusController.shutdown)
 
 let server
 function start() {

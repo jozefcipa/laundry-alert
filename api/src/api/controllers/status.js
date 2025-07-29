@@ -1,5 +1,6 @@
 const os = require('os')
 const state = require('../../state')
+const systemService = require('../../services/system')
 
 const apiStartTime = new Date()
 
@@ -15,4 +16,11 @@ async function status(req, res) {
   })
 }
 
-module.exports = { status }
+async function shutdown(req, res) {
+  res.status(204).send({})
+  setTimeout(() => {
+    systemService.shutdown()
+  }, 1000)
+}
+
+module.exports = { status, shutdown }

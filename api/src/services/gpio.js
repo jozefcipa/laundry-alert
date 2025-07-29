@@ -1,21 +1,6 @@
-const { exec } = require('child_process')
 const logger = require('./logger')
 const config = require('../config')
-
-async function command(cmd) {
-  return new Promise((resolve, reject) => {
-    exec(cmd, (err, stdout, stderr) => {
-      if (err) {
-          return reject(err)
-      }
-      if (stderr) {
-          return reject(stderr)
-      }
-
-      resolve(stdout)
-    })
-  })
-}
+const { command } = require('./system')
 
 function handleError(err) {
   if (config.env === 'PRODUCTION') {
