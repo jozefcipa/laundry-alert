@@ -6,7 +6,7 @@ It provides an API for **registering notification tokens**, communicates with th
 ### Technologies
 - Node.js & Express router
 - SQLite database (for storing device tokens)
-- Custom wrapper aroudn [WiringOP](https://github.com/orangepi-xunlong/wiringOP) GPIO library
+- Custom wrapper around [WiringPi](https://github.com/WiringPi/WiringPi) GPIO library
 - Push notifications using [VAPID](https://www.npmjs.com/package/web-push)
 
 ### How to run

@@ -39,11 +39,12 @@ I started writing this log to track the progress and document all the steps take
 - This seems to work on Orange pi, so hopefully it will be good
 - I set up rsync, but after every 2-3 rsync when I sync some files, SSH suddenly crashes and I can't connect anymore
 - I've noticed that the whole chip is hot as fuck, so maybe it's not due to rsync but because of the temperature, I'll have to attach some fan and see if it helps
-- Added the fan, it's working well now but I have a feeling that it increased the power consumption or something because it doesn't want to turn on OrangePi anymore, I have to disconnect the fan and reconnect it after a while when OrangePi boots up.
+- Added the fan, it's working well now but I have a feeling that it increased the power consumption or something because it doesn't want to turn on RPi anymore, I have to disconnect the fan and reconnect it after a while when RPi boots up.
 - Btw, I just found out that the reason why the static IP is constantly getting overwritten is that my DHCP client is always running, it could be solved by turning off the interface, setting the static IP and turning on the interface ([link](https://askubuntu.com/questions/459140/why-dhclient-is-still-running-when-i-choose-static-ip)) but that doesn't work in my case, because the interface can't be configured while it is on ... but when I turn it off it disconnects me from SSH 😑 😑 
 - I renamed `/sbin/dhclient` to `dhclient-DISABLED` - hey, it's not stupid if it works
 - I also had to change the adapter because the original one was only 1A and the computer didn't start when I connected the fan
 - I configured `pm2` to turn on the program after booting up
 - I bought a case, cables, a nice LED and resoldered everything to make it more neat, let's see if I can stuff it all into the box 😅 
 - I managed to fit everything into the box, omg I can't believe that after half a year of struggling and many hopeless nights, it finally looks promising, hopefully it will work in the long run
-- I installed Go to build a `mkcert` version for OrangePi so I can generate SSL certificates on the board
+- I installed Go to build a `mkcert` version for RPi so I can generate SSL certificates on the board
+- After a year and something OrangePi gave up and died on me ... still not sure what happened but I don't even care tbh, there were always only problems with this board. I bought a Raspberry Pi Zero 2W and will modify the project to run on something hopefully more reliable.

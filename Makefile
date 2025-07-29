@@ -33,7 +33,7 @@ api/init-db:
 web:
 	npx serve ./web
 
-# Copy the files from the local computer to OrangePi
+# Copy the files from the local computer to RPi
 deploy: ssl/copy-root-ca
 	rsync -r \
 		--exclude-from .rsyncignore \
@@ -42,13 +42,13 @@ deploy: ssl/copy-root-ca
 		. \
 		laundry-alert:~/laundry-alert
 
-# Copy the Root CA to the ./nginx/ssl folder so it gets copied over to OrangePi ... mkcert needs this to generate SSL certs
+# Copy the Root CA to the ./nginx/ssl folder so it gets copied over to RPi ... mkcert needs this to generate SSL certs
 ssl/copy-root-ca:
 	@cp -R "$(shell mkcert -CAROOT)/." ./nginx/ssl || true
 
-# Generate SSL certificates for NGINX on OrangePi
+# Generate SSL certificates for NGINX on RPi
 ssl/generate:
-	CAROOT=/home/orangepi/laundry-alert/nginx/ssl ./bin/mkcert \
+	CAROOT=/home/laundryalert/laundry-alert/nginx/ssl ./bin/mkcert \
 	-key-file ./nginx/ssl/cert.key -cert-file ./nginx/ssl/cert.pem $(ORANGE_PI_IP_ADDR) && \
 	node ./bin/certificate-manager.js write
 
@@ -61,7 +61,7 @@ ssl/certificate-manager:
 # Configure NGINX server
 # Needs to be ran as: "sudo make nginx/setup"
 nginx/setup:
-	ln -s /home/orangepi/laundry-alert/nginx/server.conf /etc/nginx/sites-enabled/
+	ln -s /home/laundryalert/laundry-alert/nginx/server.conf /etc/nginx/sites-enabled/
 	systemctl restart nginx.service
 
 # Test whether GPIO works by blinking the LED

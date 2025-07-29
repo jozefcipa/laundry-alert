@@ -2,4 +2,4 @@
 # cat .crontab | crontab -
 
 # Check SSL certificates validity
-@reboot cd /home/orangepi/laundry-alert && make ssl/certificate-manager
+@reboot cd /home/laundryalert/laundry-alert && make ssl/certificate-manager
