@@ -1,12 +1,10 @@
-gconst express = require('express')
-const cors = require('cors')
+const express = require('express')
 const config = require('../config')
 const notificationsController = require('./controllers/notifications')
 const statusController = require('./controllers/status')
 const logger = require('../services/logger')
 
 const app = express()
-app.use(cors())
 app.use(express.json())
 
 // Define routes
