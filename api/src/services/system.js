@@ -19,7 +19,18 @@ async function shutdown() {
   await command('sudo shutdown -h now')
 }
 
+async function getCpuTemperature() {
+  try {
+    const result = await command('vcgencmd measure_temp')
+    return result.split('=')[1].trim()
+  } catch (error) {
+    console.error('Error getting CPU temperature:', error)
+    return null
+  }
+}
+
 module.exports = {
   command,
   shutdown,
+  getCpuTemperature,
 }

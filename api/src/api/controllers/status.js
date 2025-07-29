@@ -11,6 +11,7 @@ async function status(req, res) {
   res.json({
     name: 'laundry-alert-api',
     isWashing: state.isWashing,
+    cpuTemperature: await systemService.getCpuTemperature(),
     apiStartTime,
     systemStartTime,
   })

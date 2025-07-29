@@ -25,7 +25,7 @@ module.exports = {
     logLevel: process.env.LOG_LEVEL ?? 'info',
   },
   gpio: {
-    ledPin: requireEnv('LED_PIN', 16),
+    ledPin: requireEnv('LED_PIN', 29),
     photoResistorPin: requireEnv('PHOTORESISTOR_PIN', 15),
   }
 }
