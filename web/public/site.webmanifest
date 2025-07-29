@@ -1,0 +1,14 @@
+{
+  "name": "Laundry Alert",
+  "short_name": "Laundry Alert",
+  "icons": [
+    {
+      "src": "/app-icon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

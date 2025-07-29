@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Laundry App Color Palette */
+    --background: 220 20% 98%;
+    --foreground: 215 25% 27%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    --primary: 200 95% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 30% 96%;
+    --secondary-foreground: 215 25% 27%;
+
+    --muted: 210 30% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 200 95% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 20% 90%;
+    --input: 215 20% 90%;
+    --ring: 200 95% 55%;
+
+    /* Laundry App Specific Colors */
+    --washing-blue: 200 95% 55%;
+    --done-green: 142 71% 45%;
+    --warning-orange: 25 95% 53%;
+    --error-red: 0 84% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(200 95% 55%),
+      hsl(210 95% 65%)
+    );
+    --gradient-success: linear-gradient(
+      135deg,
+      hsl(142 71% 45%),
+      hsl(152 71% 55%)
+    );
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 30% 98%));
+
+    /* Shadows */
+    --shadow-soft: 0 2px 10px -2px hsl(200 95% 55% / 0.1);
+    --shadow-glow: 0 0 20px hsl(200 95% 55% / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(215 25% 27% / 0.1);
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

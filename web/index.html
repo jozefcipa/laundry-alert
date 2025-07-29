@@ -1,39 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title></title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="manifest" href="./assets/site.webmanifest">
-<link rel="stylesheet" href="./styles.css">
-<meta name="robots" content="noindex">
-</head>
-<body>
-  <div id="message">
-    <h1>Laundry Alert</h1>
-    <h2 id="status">Loading...</h2>
-  </div>
-  <div>
-    <div id="loading">
-      <img src="./assets/loading.jpg" alt="">
-    </div>
-    <div id="error">
-     <img src="./assets/disconnected.jpg" alt="">
-    </div>
-    <div id="laundry">
-      <div>
-        <div id="washing-progress">
-          <img src="./assets/washing.jpg" alt="">
-        </div>
-        <div id="washing-done">
-         <img src="./assets/laundry.jpg" alt="">
-        </div>
-      </div>
-      <button id="subscribe-notifications">
-        Notify me when it's done
-      </button>
-    </div>
-  </div>
-</body>
-<script src="./main.js"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/app-icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/app-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="robots" content="noindex" />
+    <title>Laundry Alert - Smart Laundry Monitor</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
