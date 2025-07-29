@@ -123,6 +123,7 @@ export const LaundryAlert = () => {
 
         {shouldShowNotificationButton && (
           <NotificationButton
+            disabled={!('serviceWorker' in navigator) || !serviceWorker.current}
             onSubscribe={handleNotificationSubscribe}
             isSubscribed={isNotificationSubscribed}
           />
