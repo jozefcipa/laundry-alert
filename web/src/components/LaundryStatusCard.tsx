@@ -27,13 +27,6 @@ const statusConfig = {
     animation: '',
     title: 'Monitoring device not responding',
   },
-  'api-error': {
-    icon: WifiOff,
-    color: 'text-error',
-    bgColor: 'bg-error/5',
-    animation: 'animate-pulse',
-    title: 'API Connection Failed',
-  },
   washing: {
     icon: Waves,
     color: 'text-washing',

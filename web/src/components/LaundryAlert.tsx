@@ -36,10 +36,7 @@ export const LaundryAlert = () => {
       }
 
       // A service worker must be registered in order to send notifications on iOS
-      const svcWorker = await navigator.serviceWorker.register(
-        './serviceworker.js',
-        { scope: './' },
-      )
+      const svcWorker = await navigator.serviceWorker.register('/serviceworker.js')
       serviceWorker.current = svcWorker
       console.log('Service Worker registered:', svcWorker)
 
@@ -71,11 +68,6 @@ export const LaundryAlert = () => {
     console.log('Sending subscription to the API')
     await subscribeToNotifications(subscription)
     setIsNotificationSubscribed(true)
-
-    // show test notification
-    serviceWorker.current.showNotification('Laundry Alert', {
-      body: 'You have successfully subscribed to laundry notifications!',
-    })
   }
 
   // const handleTurnOff = async () => {
@@ -96,7 +88,6 @@ export const LaundryAlert = () => {
 
   const shouldShowNotificationButton = state === 'washing' || state === 'done'
   // const shouldShowTurnOffButton = state === 'washing' || state === 'done';
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="pt-8 pb-6 px-6">
@@ -123,7 +114,6 @@ export const LaundryAlert = () => {
 
         {shouldShowNotificationButton && (
           <NotificationButton
-            disabled={!('serviceWorker' in navigator) || !serviceWorker.current}
             onSubscribe={handleNotificationSubscribe}
             isSubscribed={isNotificationSubscribed}
           />

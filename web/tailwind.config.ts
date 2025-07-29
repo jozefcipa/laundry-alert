@@ -56,6 +56,7 @@ export default {
         washing: 'hsl(var(--washing-blue))',
         done: 'hsl(var(--done-green))',
         warning: 'hsl(var(--warning-orange))',
+        error: 'hsl(var(--error-red))',
       },
       borderRadius: {
         lg: 'var(--radius)',
