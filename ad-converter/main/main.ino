@@ -19,7 +19,7 @@ void loop() {
   Serial.println(analogValue);
 
   // Total dark ~ 1023, light ~ 100
-  if (analogValue < 500) {
+  if (analogValue < 900) {
     // washing machine LED is ON, the washing cycle has finished
     digitalWrite(LED_BUILTIN, LOW);
     digitalWrite(SIGNAL_OUTPUT, HIGH);
